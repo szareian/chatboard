@@ -1,8 +1,8 @@
 {
   "name": "chatboard",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Chatboard is a video chat app built on express.",
+  "main": "server.js",
   "scripts": {
     "devStart": "nodemon server.js"
   },
