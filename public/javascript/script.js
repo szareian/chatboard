@@ -1,5 +1,4 @@
 const socket = io('/')
-const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
     path: '/peerjs',
     host: '/',
@@ -7,7 +6,21 @@ const myPeer = new Peer(undefined, {
     // debug: 3,
 })
 
-const myVideo = document.querySelector('video.mini_video')
+socket.on('userCount', userCount => {
+    // console.log(userCount);
+    switch (userCount) {
+        case 1:
+            activateLocalVideo();
+            break;
+        case 2:
+            activateMiniVideo();
+        default:
+            activateMiniVideo()
+            break;
+    }
+})
+
+const myVideo = document.querySelector('video.video_local')
 myVideo.muted = true // mute ourselves
 
 const peers = {}
@@ -20,10 +33,6 @@ navigator.mediaDevices.getUserMedia({
 
     myPeer.on('call', call => {
         call.answer(stream)
-        // if(!myVideo){
-        //     console.log(myVideo);
-            
-        // }
         const myVideo = document.querySelector('video.video_guest')
         call.on('stream', userVideoStream => {
             addVideoStream(myVideo, userVideoStream)
@@ -66,6 +75,23 @@ function addVideoStream(video,stream) {
     video.addEventListener('loadedmetadata', () => {
         video.play()
     })
-    // video.classList.add('align-middle');
-    // videoGrid.append(video)
 }
+
+var activateVideo = () => {
+    if (!myVideo.classList.contains('active')) {
+        myVideo.classList.add('active');
+    }
+}
+
+activateLocalVideo = () => {
+    if (myVideo.classList.contains('mini_video')) {
+        myVideo.classList.remove('mini_video');
+    }
+    activateVideo();
+}
+
+activateMiniVideo = () => {
+    myVideo.classList.add('mini_video');
+    activateVideo();
+}
+
