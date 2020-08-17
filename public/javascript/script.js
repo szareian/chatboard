@@ -7,7 +7,6 @@ const myPeer = new Peer(undefined, {
 })
 
 socket.on('userCount', userCount => {
-    // console.log(userCount);
     switch (userCount) {
         case 1:
             activateLocalVideo();
@@ -59,12 +58,16 @@ function connectToNewUser(userId, stream) {
     const call = myPeer.call(userId, stream)
     const video = document.querySelector('video.video_guest')
     
+    if (video.classList.contains('deactive')) {
+        video.classList.remove('deactive');        
+    }
+
     call.on('stream', userVideoStream => {
         addVideoStream(video, userVideoStream)
     })
 
     call.on('close', () => {
-        video.remove()
+        video.classList.add('deactive'); 
     })
 
     peers[userId] = call
@@ -83,14 +86,14 @@ var activateVideo = () => {
     }
 }
 
-activateLocalVideo = () => {
+var activateLocalVideo = () => {
     if (myVideo.classList.contains('mini_video')) {
         myVideo.classList.remove('mini_video');
     }
     activateVideo();
 }
 
-activateMiniVideo = () => {
+var activateMiniVideo = () => {
     myVideo.classList.add('mini_video');
     activateVideo();
 }

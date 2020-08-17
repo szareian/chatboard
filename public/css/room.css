@@ -16,6 +16,11 @@
     z-index: 1;
 } 
 
+.video_guest.deactive{
+    opacity: 0;
+    z-index: 1; 
+}
+
 .video_local{
     display: block; 
     object-fit: cover;  
