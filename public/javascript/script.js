@@ -7,7 +7,7 @@ const myPeer = new Peer(undefined, {
     // debug: 3,
 })
 
-const myVideo = document.createElement('video')
+const myVideo = document.querySelector('video.mini_video')
 myVideo.muted = true // mute ourselves
 
 const peers = {}
@@ -20,9 +20,13 @@ navigator.mediaDevices.getUserMedia({
 
     myPeer.on('call', call => {
         call.answer(stream)
-        const video = document.createElement('video')
+        // if(!myVideo){
+        //     console.log(myVideo);
+            
+        // }
+        const myVideo = document.querySelector('video.video_guest')
         call.on('stream', userVideoStream => {
-            addVideoStream(video, userVideoStream)
+            addVideoStream(myVideo, userVideoStream)
         })
     })
 
@@ -44,7 +48,7 @@ myPeer.on('open', id => {
 // connect a new user and send our current stream to them
 function connectToNewUser(userId, stream) {
     const call = myPeer.call(userId, stream)
-    const video = document.createElement('video')
+    const video = document.querySelector('video.video_guest')
     
     call.on('stream', userVideoStream => {
         addVideoStream(video, userVideoStream)
@@ -56,10 +60,12 @@ function connectToNewUser(userId, stream) {
 
     peers[userId] = call
 }
+
 function addVideoStream(video,stream) {
     video.srcObject = stream
     video.addEventListener('loadedmetadata', () => {
         video.play()
     })
-    videoGrid.append(video)
+    // video.classList.add('align-middle');
+    // videoGrid.append(video)
 }

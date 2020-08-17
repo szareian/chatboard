@@ -12,13 +12,45 @@
 }
 
 #video-grid{
-    display: flex;
+    display: flex; 
     justify-content: center;
     flex-wrap: wrap;
 }
 video{
+    -moz-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+}
+
+.video_local{
     height: 300px;
     width: 400px;
     object-fit: cover;
     padding: 8px;
+}
+
+.video_guest{
+    display: block; 
+    object-fit: cover;  /* no letterboxing */
+    opacity: 1;
+    position: absolute;
+    transition: opacity 1s;
+    width: 100%;
+    height: 100%;
+}
+
+.mini_video {
+  border: 1px solid gray;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 0 #bdbdbd;
+  max-height: 30%;
+  max-width: 30%;
+  opacity: 1;
+  position: absolute;
+  transition: opacity 1s;
+  z-index: 1;
 }
