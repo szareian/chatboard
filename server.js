@@ -37,7 +37,7 @@ io.on('connection', socket => {
         io.sockets.emit('userCount', userCount);
 
         socket.on('disconnect', () => {
-            socket.to(roomId).broadcast.emit('user-disconneted', userId);
+            socket.to(roomId).broadcast.emit('user-disconnected', userId);
             userCount--;
             io.sockets.emit('userCount', userCount);
         })

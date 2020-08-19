@@ -3,7 +3,6 @@ const myPeer = new Peer(undefined, {
     path: '/peerjs',
     host: '/',
     port: '443',
-    // debug: 3,
 })
 
 socket.on('userCount', userCount => {
@@ -14,7 +13,7 @@ socket.on('userCount', userCount => {
         case 2:
             activateMiniVideo();
         default:
-            activateMiniVideo()
+            activateMiniVideo();
             break;
     }
 })
@@ -43,7 +42,7 @@ navigator.mediaDevices.getUserMedia({
     })
 })
 
-socket.on('user-disconneted', userId => {
+socket.on('user-disconnected', userId => {
     if(peers[userId]){
         peers[userId].close()
     }
