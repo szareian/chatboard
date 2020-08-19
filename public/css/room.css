@@ -59,3 +59,23 @@ video{
     -webkit-transform: scale(-1, 1);
     transform: scale(-1, 1);
 }
+
+
+sl-button {
+    padding: 20px;
+    z-index: 3;
+    /* colo */
+}
+
+#call_end {
+    color: red;
+    
+}
+
+#videocam {
+    color: blue;
+}
+
+#mic{
+    color: black;
+}
