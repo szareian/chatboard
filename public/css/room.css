@@ -35,7 +35,7 @@
 /* Switch video from full screen to mini-video */
 .video_local.mini_video { 
     border: 1px solid gray;
-    bottom: 20px;
+    top: 20px;
     right: 20px;
     border-radius: 50%;
     box-shadow: 0 0 10px 0 #bdbdbd;
@@ -62,9 +62,8 @@ video{
 
 
 sl-button {
-    padding: 20px;
+    padding: 1%;
     z-index: 3;
-    /* colo */
 }
 
 #call_end {
