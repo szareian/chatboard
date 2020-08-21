@@ -18,22 +18,24 @@ socket.on('userCount', userCount => {
     }
 })
 
-const myVideo = document.querySelector('video.video_local')
-myVideo.muted = true // mute ourselves
+const myVideo = document.querySelector('video.video_local');
+var mediaStream;
+myVideo.muted = true; // mute ourselves
 
-const peers = {}
+const peers = {};
 
 navigator.mediaDevices.getUserMedia({
     video: true,
     audio: true
 }).then( stream => {
+    mediaStream = stream;
     addVideoStream(myVideo, stream)
 
     myPeer.on('call', call => {
         call.answer(stream)
-        const myVideo = document.querySelector('video.video_guest')
+        const remoteVideo = document.querySelector('video.video_guest')
         call.on('stream', userVideoStream => {
-            addVideoStream(myVideo, userVideoStream)
+            addVideoStream(remoteVideo, userVideoStream)
         })
     })
 
@@ -79,6 +81,20 @@ function addVideoStream(video,stream) {
     })
 }
 
+function cameraOnOff() {
+    camera = document.getElementById('videocam');
+    camera.setAttribute('name', camera.name == 'camera-video'? 'camera-video-off': 'camera-video');
+
+    mediaStream.getVideoTracks()[0].enabled = !mediaStream.getVideoTracks()[0].enabled
+}
+
+function micOnOff() {
+    mic = document.getElementById('mic');
+    mic.setAttribute('name', mic.name == 'mic' ? 'mic-mute' : 'mic');
+
+    mediaStream.getAudioTracks()[0].enabled = !mediaStream.getAudioTracks()[0].enabled
+}
+
 var activateVideo = () => {
     if (!myVideo.classList.contains('active')) {
         myVideo.classList.add('active');
@@ -96,4 +112,3 @@ var activateMiniVideo = () => {
     myVideo.classList.add('mini_video');
     activateVideo();
 }
-
