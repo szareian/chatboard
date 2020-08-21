@@ -33,11 +33,11 @@
 } 
 
 /* Switch video from full screen to mini-video */
-.video_local.mini_video { 
+.video_local.mini_video {
+    border-radius: var(--sl-border-radius-x-large); 
     border: 1px solid gray;
     top: 20px;
     right: 20px;
-    border-radius: 50%;
     box-shadow: 0 0 10px 0 #bdbdbd;
     max-height: 30%;
     max-width: 30%;
@@ -67,8 +67,7 @@ sl-button {
 }
 
 #call_end {
-    color: red;
-    
+    color: black;
 }
 
 #videocam {
