@@ -5,12 +5,23 @@ const myPeer = new Peer(undefined, {
     port: '443',
 })
 
+const remoteVideo = document.querySelector('video.video_guest');
+const myVideo = document.querySelector('video.video_local');
+myVideo.muted = true; // mute ourselves
+
+var mediaStream;
+const peers = {};
+
 socket.on('userCount', userCount => {
+    call_end_btn = document.getElementById('call_end_btn');
+    
     switch (userCount) {
         case 1:
+            call_end_btn.setAttribute('disabled', '');
             activateLocalVideo();
             break;
         case 2:
+            call_end_btn.removeAttribute('disabled');
             activateMiniVideo();
         default:
             activateMiniVideo();
@@ -18,36 +29,30 @@ socket.on('userCount', userCount => {
     }
 })
 
-const myVideo = document.querySelector('video.video_local');
-var mediaStream;
-myVideo.muted = true; // mute ourselves
-
-const peers = {};
-
 navigator.mediaDevices.getUserMedia({
     video: true,
     audio: true
 }).then( stream => {
     mediaStream = stream;
-    addVideoStream(myVideo, stream)
+    addVideoStream(myVideo, stream);
 
     myPeer.on('call', call => {
-        call.answer(stream)
-        const remoteVideo = document.querySelector('video.video_guest')
+        call.answer(stream);
         call.on('stream', userVideoStream => {
-            addVideoStream(remoteVideo, userVideoStream)
+            addVideoStream(remoteVideo, userVideoStream);
         })
     })
 
     socket.on('user-connected', userId => {
-        connectToNewUser(userId, stream) 
+        connectToNewUser(userId, stream);
     })
 })
 
 socket.on('user-disconnected', userId => {
     if(peers[userId]){
-        peers[userId].close()
+        peers[userId].close();
     }
+    console.log('User Disconnected');
 })
 
 myPeer.on('open', id => {
@@ -71,13 +76,13 @@ function connectToNewUser(userId, stream) {
         video.classList.add('deactive'); 
     })
 
-    peers[userId] = call
+    peers[userId] = call;
 }
 
 function addVideoStream(video,stream) {
-    video.srcObject = stream
+    video.srcObject = stream;
     video.addEventListener('loadedmetadata', () => {
-        video.play()
+        video.play();
     })
 }
 
@@ -85,14 +90,14 @@ function cameraOnOff() {
     camera = document.getElementById('videocam');
     camera.setAttribute('name', camera.name == 'camera-video'? 'camera-video-off': 'camera-video');
 
-    mediaStream.getVideoTracks()[0].enabled = !mediaStream.getVideoTracks()[0].enabled
+    mediaStream.getVideoTracks()[0].enabled = !mediaStream.getVideoTracks()[0].enabled;
 }
 
 function micOnOff() {
     mic = document.getElementById('mic');
     mic.setAttribute('name', mic.name == 'mic' ? 'mic-mute' : 'mic');
 
-    mediaStream.getAudioTracks()[0].enabled = !mediaStream.getAudioTracks()[0].enabled
+    mediaStream.getAudioTracks()[0].enabled = !mediaStream.getAudioTracks()[0].enabled;
 }
 
 var activateVideo = () => {
