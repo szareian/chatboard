@@ -41,6 +41,10 @@ io.on('connection', socket => {
             userCount--;
             io.sockets.emit('userCount', userCount);
         })
+
+        socket.on('error', (error) => {
+            console.log(error);   
+        });
     })
 })
 
