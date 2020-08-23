@@ -60,7 +60,9 @@ video{
     transform: scale(-1, 1);
 }
 
-
+footer {
+    background-color: rgba(0,0,0,0.6);
+}
 sl-button {
     padding: 1%;
     z-index: 3;
