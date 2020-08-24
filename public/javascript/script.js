@@ -17,14 +17,22 @@ socket.on('userCount', userCount => {
     
     switch (userCount) {
         case 1:
+            // console.log('One user');
+            
             call_end_btn.setAttribute('disabled', '');
             activateLocalVideo();
             break;
         case 2:
+            // console.log('Two users');
+
             call_end_btn.removeAttribute('disabled');
             activateMiniVideo();
+            break;
         default:
-            activateMiniVideo();
+            // console.log('Default user');
+
+            call_end_btn.setAttribute('disabled', '');
+            activateLocalVideo();
             break;
     }
 })
@@ -117,3 +125,4 @@ var activateMiniVideo = () => {
     myVideo.classList.add('mini_video');
     activateVideo();
 }
+
