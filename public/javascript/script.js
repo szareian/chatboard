@@ -14,8 +14,8 @@ var mediaStream;
 const peers = {};
 
 socket.on('userCount', userCount => {
-
-    switch (userCount) {
+    numUsers = userCount[ROOM_ID];
+    switch (numUsers) {
         case 1:
             // console.log('One user');
 
@@ -41,7 +41,7 @@ socket.on('userCount', userCount => {
             break;
     }
 
-    console.log("user Count: ", userCount);
+    console.log("user Count: ", numUsers);
 
 })
 

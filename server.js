@@ -11,7 +11,7 @@ const peerServer = ExpressPeerServer(server, {
     debug: true,
 });
 
-var userCount = 0;
+var userCount = {};
 
 app.use(cors())
 app.use('/peerjs', peerServer);
@@ -21,11 +21,11 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req,res) => {
-    res.redirect(`/${uuidV4()}`)
+    res.redirect(`/${uuidV4()}`);
 })
 
 app.get('/:room', (req,res) => {
-    res.render('room', { roomId: req.params.room })
+    res.render('room', { roomId: req.params.room });
 })
 
 
@@ -33,12 +33,19 @@ io.on('connection', socket => {
     socket.on('join-room', (roomId, userId) => {
         socket.join(roomId);
         socket.to(roomId).broadcast.emit('user-connected', userId);
-        userCount++;
+
+        // keep track of the number of users in each room
+        if (userCount[roomId] == undefined){
+            userCount[roomId] = 1;
+        } else {
+            userCount[roomId]++;
+        }
         io.sockets.emit('userCount', userCount);
 
         socket.on('disconnect', () => {
             socket.to(roomId).broadcast.emit('user-disconnected', userId);
-            userCount--;
+            
+            userCount[roomId]--;
             io.sockets.emit('userCount', userCount);
         })
 
