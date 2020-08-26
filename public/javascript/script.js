@@ -11,38 +11,28 @@ myVideo.muted = true; // mute ourselves
 
 call_end_btn = document.getElementById('call_end_btn');
 var mediaStream;
+var numUsers;
 const peers = {};
 
 socket.on('userCount', userCount => {
     numUsers = userCount[ROOM_ID];
     switch (numUsers) {
         case 1:
-            // console.log('One user');
-
             call_end_btn.setAttribute("disabled", "disabled");
             activateLocalVideo();
             break;
         case 2:
-            // console.log('Two users');
-            // if (document.getElementById('call_end_btn').clicked == true) {
-            //     userCount = 1;
-            //     console.log("button clicked with user count: ", userCount);
-
-            // }
-
             call_end_btn.removeAttribute('disabled');
             activateMiniVideo();
             break;
         default:
-            // console.log('Default user');
-
             call_end_btn.setAttribute("disabled", "disabled");
             activateLocalVideo();
             break;
     }
 
-    console.log("user Count: ", numUsers);
-
+    // console.log("user Count: ", numUsers);
+    // console.log("user Count (All Rooms): ", userCount);
 })
 
 navigator.mediaDevices.getUserMedia({
@@ -68,7 +58,7 @@ socket.on('user-disconnected', userId => {
     if(peers[userId]){
         peers[userId].close();
     }
-    console.log('User Disconnected');
+    // console.log('User Disconnected');
 })
 
 myPeer.on('open', id => {
@@ -119,26 +109,21 @@ function micOnOff() {
 var exitRoom = () => {
     // Remove all tracks and set the srcObject to null
     mediaStream.getTracks().forEach((track) => {
-        console.log('track: ', track);
-
+        // console.log('track: ', track);
         track.stop();
     });
 
     mediaStream.srcObject = null;
+    
     // Remove the guest video element 
     remote_guest_video = document.querySelector('.video_guest');
     remote_guest_video.remove();
-
-    // set the number of users to one
-    // socket.on('userCount', userCount => {
-    //     userCount = 1;
-    //     console.log("User Count inside exitRoom:", userCount);
-        
-    // })
-
-    // Disable the call_end button
+    
+    // Disable the call_end button for the other user
     call_end_btn.setAttribute("disabled", "disabled");
-
+    
+    // redirect the user to the left-chat-room page
+    window.location.href = '/left-chat-room';
 }
 
 var activateVideo = () => {

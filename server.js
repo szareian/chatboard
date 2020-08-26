@@ -20,6 +20,10 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(__dirname + '/public'));
 
+app.get('/left-chat-room', (req, res) => {
+    res.render('left-room');
+})
+
 app.get('/', (req,res) => {
     res.redirect(`/${uuidV4()}`);
 })
