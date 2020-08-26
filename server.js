@@ -46,6 +46,10 @@ io.on('connection', socket => {
             socket.to(roomId).broadcast.emit('user-disconnected', userId);
             
             userCount[roomId]--;
+
+            if (userCount[roomId] == 0) {
+                delete userCount[roomId];
+            }
             io.sockets.emit('userCount', userCount);
         })
 
