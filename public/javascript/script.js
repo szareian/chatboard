@@ -114,7 +114,7 @@ var exitRoom = () => {
     });
 
     mediaStream.srcObject = null;
-    
+
     // Remove the guest video element 
     remote_guest_video = document.querySelector('.video_guest');
     remote_guest_video.remove();
@@ -123,7 +123,7 @@ var exitRoom = () => {
     call_end_btn.setAttribute("disabled", "disabled");
     
     // redirect the user to the left-chat-room page
-    window.location.href = '/left-chat-room';
+    window.location.href = '/';
 }
 
 var activateVideo = () => {

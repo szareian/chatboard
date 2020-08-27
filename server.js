@@ -20,18 +20,21 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/left-chat-room', (req, res) => {
-    res.render('left-room');
+app.get('/', (req, res) => {
+    res.render('home');
 })
 
-app.get('/', (req,res) => {
-    res.redirect(`/${uuidV4()}`);
+app.get('/room/', (req,res) => {
+    res.redirect(`/room/${uuidV4()}`);
 })
 
-app.get('/:room', (req,res) => {
+app.get('/room/:room', (req,res) => {
     res.render('room', { roomId: req.params.room });
 })
 
+app.get('/*', (req, res) => {
+    res.redirect('/');
+})
 
 io.on('connection', socket => {
     socket.on('join-room', (roomId, userId) => {

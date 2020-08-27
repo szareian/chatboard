@@ -1,0 +1,43 @@
+html,body{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    background-color: #000;
+    z-index: 0;
+}
+
+#my_stream{
+    display: block; 
+    object-fit: cover;  /* no letterboxing */
+    position: fixed;
+    transition: opacity 1s;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    
+    /* mirror the video stream */
+    -moz-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+} 
+
+#overlay {
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+}
+
+sl-button{
+    position: absolute;
+    width: 20%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    z-index: 3;
+}
