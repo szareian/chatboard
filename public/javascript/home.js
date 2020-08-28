@@ -1,4 +1,5 @@
 const video = document.querySelector('video#my_stream');
+const newRoombtn = document.querySelector('sl-button');
 
 navigator.mediaDevices.getUserMedia({
     video: true,
@@ -9,3 +10,9 @@ navigator.mediaDevices.getUserMedia({
         video.play();
     })
 })
+
+var openNewRoom = () => {
+    newRoombtn.setAttribute("loading", "");
+    // Redirect the user to a new chat room page
+    window.location.href = '/room';
+}
