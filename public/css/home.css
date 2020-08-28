@@ -34,10 +34,17 @@ html,body{
 
 sl-button{
     position: absolute;
-    width: 20%;
+    width: 25vh;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
     z-index: 3;
+}
+
+/* button size for devices more than 1200px) */
+@media screen and (min-width: 1199.99px) { 
+    sl-button{
+        width: 35vh;
+    }
 }
