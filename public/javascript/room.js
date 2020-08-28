@@ -122,7 +122,7 @@ var exitRoom = () => {
     // Disable the call_end button for the other user
     call_end_btn.setAttribute("disabled", "disabled");
     
-    // redirect the user to the left-chat-room page
+    // Redirect the user to the home page
     window.location.href = '/';
 }
 
