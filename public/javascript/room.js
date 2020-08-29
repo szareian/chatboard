@@ -18,15 +18,15 @@ socket.on('userCount', userCount => {
     numUsers = userCount[ROOM_ID];
     switch (numUsers) {
         case 1:
-            call_end_btn.setAttribute("disabled", "disabled");
+            // call_end_btn.setAttribute("disabled", "disabled");
             activateLocalVideo();
             break;
         case 2:
-            call_end_btn.removeAttribute('disabled');
+            // call_end_btn.removeAttribute('disabled');
             activateMiniVideo();
             break;
         default:
-            call_end_btn.setAttribute("disabled", "disabled");
+            // call_end_btn.setAttribute("disabled", "disabled");
             activateLocalVideo();
             break;
     }
@@ -120,7 +120,7 @@ var exitRoom = () => {
     remote_guest_video.remove();
     
     // Disable the call_end button for the other user
-    call_end_btn.setAttribute("disabled", "disabled");
+    // call_end_btn.setAttribute("disabled", "disabled");
     
     // Redirect the user to the home page
     window.location.href = '/';
