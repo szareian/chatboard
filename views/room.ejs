@@ -10,6 +10,9 @@
     <script>
         const ROOM_ID = "<%= roomId %>"
     </script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
     <!-- Material -->
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -48,8 +51,103 @@
     <div class='main_room'>
         <video class='video_local'></video>
         <video class='video_guest'></video>
+    </div>
+    <div class='video-overlays'>
+        <div class="card">
+            <div class="card-body msg_card_body smooth-scroll scrollbar-deep-blue">
+                <div class="d-flex justify-content-start mb-4">
+                    <div class="img_cont_msg">
+                        <img src="/img/you_icon.png" class="rounded-circle user_img_msg">
+                    </div>
+                    <div class="msg_cotainer">
+                        Hi, how are you Sina?
+                        <span class="msg_time">8:40 AM, Today</span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mb-4">
+                    <div class="msg_cotainer_send">
+                        Hi Nima i am good tnx how about you?
+                        <span class="msg_time_send">8:55 AM, Today</span>
+                    </div>
+                    <div class="img_cont_msg">
+                        <img src="/img/guest_icon.png" class="rounded-circle user_img_msg">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-start mb-4">
+                    <div class="img_cont_msg">
+                        <img src="/img/you_icon.png" class="rounded-circle user_img_msg">
+                    </div>
+                    <div class="msg_cotainer">
+                        I am good too, thank you for your chat template
+                        <span class="msg_time">9:00 AM, Today</span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mb-4">
+                    <div class="msg_cotainer_send">
+                        You are welcome
+                        <span class="msg_time_send">9:05 AM, Today</span>
+                    </div>
+                    <div class="img_cont_msg">
+                        <img src="/img/guest_icon.png" class="rounded-circle user_img_msg">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-start mb-4">
+                    <div class="img_cont_msg">
+                        <img src="/img/you_icon.png" class="rounded-circle user_img_msg">
+                    </div>
+                    <div class="msg_cotainer">
+                        I am looking for your next templates
+                        <span class="msg_time">9:07 AM, Today</span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mb-4">
+                    <div class="msg_cotainer_send">
+                        Ok, thank you have a good day
+                        <span class="msg_time_send">9:10 AM, Today</span>
+                    </div>
+                    <div class="img_cont_msg">
+                        <img src="/img/guest_icon.png" class="rounded-circle user_img_msg">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-start mb-4">
+                    <div class="img_cont_msg">
+                        <img src="/img/you_icon.png" class="rounded-circle user_img_msg">
+                    </div>
+                    <div class="msg_cotainer">
+                        Bye, see you
+                        <span class="msg_time">9:12 AM, Today</span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mb-4">
+                    <div class="msg_cotainer_send">
+                        Goodbye, i hope you have a great day! :)
+                        <span class="msg_time_send">9:10 AM, Today</span>
+                    </div>
+                    <div class="img_cont_msg">
+                        <img src="/img/guest_icon.png" class="rounded-circle user_img_msg">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-start mb-4">
+                    <div class="img_cont_msg">
+                        <img src="/img/you_icon.png" class="rounded-circle user_img_msg">
+                    </div>
+                    <div class="msg_cotainer">
+                        Talk to you in the near future,bud
+                        <span class="msg_time">9:12 AM, Today</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="input-group">
+                    <textarea name="" class="form-control" placeholder="Send a message...!"></textarea>
+                    <div class="input-group-append">
+                        <span class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <footer class="fixed-bottom text-center">
+        <footer class="text-center">
             <sl-button type="default" size="large" onclick="cameraOnOff()" pill>
                 <sl-icon name="camera-video" id='videocam'></sl-icon>
             </sl-button>
@@ -61,6 +159,7 @@
             </sl-button>
         </footer>
     </div>
+
 </body>
 
 </html>

@@ -3,6 +3,7 @@
     display: flex;
     background-color: #000;
     z-index: 0;
+    overflow: hidden;
 }
 
 .video_guest{
@@ -62,6 +63,10 @@ video{
 
 footer {
     background-color: rgba(0,0,0,0.6);
+    width: 100%;
+    height: 10vh;
+    position: fixed;
+    bottom: 0;
 }
 sl-button {
     padding: 1%;
@@ -78,4 +83,114 @@ sl-button {
 
 #mic{
     color: black;
+}
+
+.video-overlays{
+    position: relative; 
+    z-index: 4;
+}
+
+/* message box */
+.card{
+    position: fixed;
+    bottom: 10vh;
+    max-width: 500px;
+    height: 90vh;
+    border-radius: 15px !important;
+    background-color: rgba(0,0,0,0.4) !important;
+}
+
+.msg_card_body{
+    overflow-y: auto; /* changed from hidden */
+}
+
+.form-control{
+    background-color: rgba(0,0,0,0.3) !important;
+    border:0 !important;
+    color:white !important;
+    height: 60px !important;
+    overflow-y: auto;
+}
+
+.form-control:focus{
+    box-shadow:none !important;
+    outline:0px !important;
+}
+
+.send_btn{
+    border-radius: 0 15px 15px 0 !important;
+    background-color: rgba(0,0,0,0.3) !important;
+    border:0 !important;
+    color: white !important;
+    cursor: pointer;
+}
+
+.user_img_msg{
+    height: 40px;
+    width: 40px;
+    /* border:1.5px solid #f5f6fa; */
+
+}
+
+.img_cont_msg{
+    height: 40px;
+    width: 40px;
+}
+
+.msg_cotainer{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    border-radius: 25px;
+    background-color: lightskyblue; /* #82ccdd; */
+    padding: 10px;
+    position: relative;
+}
+
+.msg_cotainer_send{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+    border-radius: 25px;
+    background-color: lightgreen;/* #78e08f; */
+    padding: 10px;
+    position: relative;
+}
+
+.msg_time{
+    position: absolute;
+    left: 0;
+    bottom: -15px;
+    color: rgba(255,255,255,0.5);
+    font-size: 10px;
+}
+
+.msg_time_send{
+    position: absolute;
+    right:0;
+    bottom: -15px;
+    color: rgba(255,255,255,0.5);
+    font-size: 10px;
+}
+
+/* scrollbar */
+.scrollbar-deep-blue::-webkit-scrollbar-track {
+    /* -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1); */
+    background-color: #F5F5F5;
+    border-radius: 10px; 
+}
+
+.scrollbar-deep-blue::-webkit-scrollbar {
+    width: 12px;
+}
+
+.scrollbar-deep-blue::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    /* -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1); */
+    background-image: -webkit-linear-gradient(330deg, #e0c3fc 0%, #8ec5fc 100%);
+    background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%); 
+}
+
+.scrollbar-deep-blue {
+    scrollbar-color: #8ec5fc #F5F5F5;
 }
