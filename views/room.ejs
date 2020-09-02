@@ -45,6 +45,29 @@
 
     <link rel="icon" type="image/png" href="/img/duo.svg" />
     <title>Chatboard</title>
+
+
+    <!-- Message sent by You -->
+    <script type="text/html" id="my_msg">
+        <div class="img_cont_msg">
+            <img src="/img/you_icon.png" class="rounded-circle user_img_msg">
+        </div>
+        <div class="msg_container">
+            <div class="text_content"></div>
+            <span class="msg_time"></span>
+        </div>
+    </script>
+
+    <!-- Message sent to you by the other user -->
+    <script type="text/html" id="other_msg">
+        <div class="msg_container_send">
+            <div class="text_content"></div>
+            <span class="msg_time_send"></span>
+        </div>
+        <div class="img_cont_msg">
+            <img src="/img/guest_icon.png" class="rounded-circle user_img_msg">
+        </div>
+    </script>
 </head>
 
 <body>
@@ -54,96 +77,18 @@
     </div>
     <div class='video-overlays'>
         <div class="card">
-            <div class="card-body msg_card_body smooth-scroll scrollbar-deep-blue">
-                <div class="d-flex justify-content-start mb-4">
-                    <div class="img_cont_msg">
-                        <img src="/img/you_icon.png" class="rounded-circle user_img_msg">
-                    </div>
-                    <div class="msg_cotainer">
-                        Hi, how are you Sina?
-                        <span class="msg_time">8:40 AM, Today</span>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-end mb-4">
-                    <div class="msg_cotainer_send">
-                        Hi Nima i am good tnx how about you?
-                        <span class="msg_time_send">8:55 AM, Today</span>
-                    </div>
-                    <div class="img_cont_msg">
-                        <img src="/img/guest_icon.png" class="rounded-circle user_img_msg">
-                    </div>
-                </div>
-                <div class="d-flex justify-content-start mb-4">
-                    <div class="img_cont_msg">
-                        <img src="/img/you_icon.png" class="rounded-circle user_img_msg">
-                    </div>
-                    <div class="msg_cotainer">
-                        I am good too, thank you for your chat template
-                        <span class="msg_time">9:00 AM, Today</span>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-end mb-4">
-                    <div class="msg_cotainer_send">
-                        You are welcome
-                        <span class="msg_time_send">9:05 AM, Today</span>
-                    </div>
-                    <div class="img_cont_msg">
-                        <img src="/img/guest_icon.png" class="rounded-circle user_img_msg">
-                    </div>
-                </div>
-                <div class="d-flex justify-content-start mb-4">
-                    <div class="img_cont_msg">
-                        <img src="/img/you_icon.png" class="rounded-circle user_img_msg">
-                    </div>
-                    <div class="msg_cotainer">
-                        I am looking for your next templates
-                        <span class="msg_time">9:07 AM, Today</span>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-end mb-4">
-                    <div class="msg_cotainer_send">
-                        Ok, thank you have a good day
-                        <span class="msg_time_send">9:10 AM, Today</span>
-                    </div>
-                    <div class="img_cont_msg">
-                        <img src="/img/guest_icon.png" class="rounded-circle user_img_msg">
-                    </div>
-                </div>
-                <div class="d-flex justify-content-start mb-4">
-                    <div class="img_cont_msg">
-                        <img src="/img/you_icon.png" class="rounded-circle user_img_msg">
-                    </div>
-                    <div class="msg_cotainer">
-                        Bye, see you
-                        <span class="msg_time">9:12 AM, Today</span>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-end mb-4">
-                    <div class="msg_cotainer_send">
-                        Goodbye, i hope you have a great day! :)
-                        <span class="msg_time_send">9:10 AM, Today</span>
-                    </div>
-                    <div class="img_cont_msg">
-                        <img src="/img/guest_icon.png" class="rounded-circle user_img_msg">
-                    </div>
-                </div>
-                <div class="d-flex justify-content-start mb-4">
-                    <div class="img_cont_msg">
-                        <img src="/img/you_icon.png" class="rounded-circle user_img_msg">
-                    </div>
-                    <div class="msg_cotainer">
-                        Talk to you in the near future,bud
-                        <span class="msg_time">9:12 AM, Today</span>
-                    </div>
-                </div>
-            </div>
+            <div class="card-body msg_card_body smooth-scroll scrollbar-deep-blue"></div>
             <div class="card-footer">
-                <div class="input-group">
-                    <textarea name="" class="form-control" placeholder="Send a message...!" rows="1"></textarea>
-                    <div class="input-group-append">
-                        <span class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>
+                <form id="send-container">
+                    <div class="input-group">
+                        <textarea type="text" class="form-control" placeholder="Send a message...!" id="message-input"
+                            rows="1"></textarea>
+                        <div class="input-group-append">
+                            <button type="submit" class="input-group-text send_btn"><i
+                                    class="fas fa-location-arrow"></i></button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
 
@@ -159,7 +104,6 @@
             </sl-button>
         </footer>
     </div>
-
 </body>
 
 </html>

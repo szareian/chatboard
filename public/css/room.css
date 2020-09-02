@@ -129,22 +129,22 @@ img {
     width: 40px;
 }
 
-.msg_cotainer{
+.msg_container{
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 10px;
     border-radius: 25px;
-    background-color: lightskyblue; /* #82ccdd; */
+    background-color: lightskyblue; 
     padding: 10px;
     position: relative;
 }
 
-.msg_cotainer_send{
+.msg_container_send{
     margin-top: auto;
     margin-bottom: auto;
     margin-right: 10px;
     border-radius: 25px;
-    background-color: lightgreen;/* #78e08f; */
+    background-color: lightgreen;
     padding: 10px;
     position: relative;
 }
