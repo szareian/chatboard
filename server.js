@@ -6,7 +6,7 @@ const { v4: uuidV4 } = require('uuid');
 const PORT = process.env.PORT || 443;
 const cors = require('cors');
 const { ExpressPeerServer } = require('peer');
- 
+
 const peerServer = ExpressPeerServer(server, {
     debug: true,
 });
@@ -24,11 +24,11 @@ app.get('/', (req, res) => {
     res.render('home');
 })
 
-app.get('/room/', (req,res) => {
+app.get('/room/', (req, res) => {
     res.redirect(`/room/${uuidV4()}`);
 })
 
-app.get('/room/:room', (req,res) => {
+app.get('/room/:room', (req, res) => {
     res.render('room', { roomId: req.params.room });
 })
 
@@ -42,26 +42,34 @@ io.on('connection', socket => {
         socket.to(roomId).broadcast.emit('user-connected', userId);
 
         // keep track of the number of users in each room
-        if (userCount[roomId] == undefined){
+        if (userCount[roomId] == undefined) {
             userCount[roomId] = 1;
         } else {
             userCount[roomId]++;
         }
+
+        socket.on('send-chat-message', message => {
+            console.log(message);
+            socket.broadcast.emit('chat-message', { message: message, name: userId })
+        })
+
         io.sockets.emit('userCount', userCount);
 
         socket.on('disconnect', () => {
             socket.to(roomId).broadcast.emit('user-disconnected', userId);
-            
+
             userCount[roomId]--;
 
             if (userCount[roomId] == 0) {
                 delete userCount[roomId];
             }
             io.sockets.emit('userCount', userCount);
+
+            delete userId;
         })
 
         socket.on('error', (error) => {
-            console.log(error);   
+            console.log(error);
         });
     })
 })
