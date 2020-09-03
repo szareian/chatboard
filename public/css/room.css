@@ -101,13 +101,14 @@ sl-button {
 }
 
 .msg_card_body{
-    overflow-y: auto; /* changed from hidden */
+    overflow-y: auto;
 }
 
 .form-control{
     border:0 !important;
-    color:white !important;
-    background-color: rgba(0,0,0,0.3) !important;
+    border-radius: 15px 0px 0px 15px !important;
+    color: whitesmoke !important;
+    background-color: rgba(0,0,0,0.6) !important;
     overflow-y: auto;
 }
 
@@ -118,7 +119,7 @@ sl-button {
 
 .send_btn{
     border-radius: 0 15px 15px 0 !important;
-    background-color: rgba(0,0,0,0.3) !important;
+    background-color: rgba(0,0,0,0.6) !important;
     border:0 !important;
     color: red !important;
     cursor: pointer;
@@ -133,7 +134,7 @@ img {
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 10px;
-    border-radius: 25px;
+    border-radius: 25px 25px 25px 5px;
     background-color: lightskyblue; 
     padding: 10px;
     position: relative;
@@ -143,7 +144,7 @@ img {
     margin-top: auto;
     margin-bottom: auto;
     margin-right: 10px;
-    border-radius: 25px;
+    border-radius: 25px 25px 5px 25px;
     background-color: lightgreen;
     padding: 10px;
     position: relative;
@@ -158,7 +159,7 @@ img {
 }
 
 .msg_time_send{
-    right:0;
+    right: 0;
     position: absolute;
     bottom: -15px;
     color: rgba(255,255,255,0.5);
