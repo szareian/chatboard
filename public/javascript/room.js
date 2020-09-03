@@ -20,8 +20,8 @@ const sendContainer = document.getElementById('send-container');
 const messageInput = document.getElementById("message-input");
 const messageContainer = document.querySelector('.msg_card_body');
 
-socket.on('chat-message', data => {
-    appendMessage(data.message, 'other_messages');
+socket.on('chat-message', message => {
+    appendMessage(message, 'other_messages');
     // console.log(data.message);
 })
 
@@ -41,23 +41,26 @@ sendContainer.addEventListener('submit', e => {
 
 
 function appendMessage(message, type) {
-    var today = new Date().toLocaleTimeString();
+    var time = new Date().toLocaleTimeString();
 
     const messageEl = document.createElement('div');
     if (type == "my_messages") {
         messageEl.setAttribute('class', 'd-flex justify-content-start mb-4');
         messageEl.innerHTML = document.getElementById('my_msg').innerHTML;
         messageEl.getElementsByClassName('text_content')[0].innerText = message;
-        messageEl.querySelector('span.msg_time').innerHTML = today;
+        messageEl.querySelector('span.msg_time').innerHTML = time;
     }
     else {
         messageEl.setAttribute('class', 'd-flex justify-content-end mb-4');
         messageEl.innerHTML = document.getElementById('other_msg').innerHTML;
         messageEl.getElementsByClassName('text_content')[0].textContent = message;
-        messageEl.querySelector('span.msg_time_send').innerHTML = today;
+        messageEl.querySelector('span.msg_time_send').innerHTML = time;
     }
     // console.log(messageEl);
     messageContainer.append(messageEl);
+
+    // scroll down to the most recent message
+    messageContainer.scrollTop = messageContainer.scrollHeight;
 }
 
 socket.on('userCount', userCount => {
