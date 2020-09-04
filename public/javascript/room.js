@@ -50,11 +50,17 @@ function appendMessage(message, type) {
         messageEl.getElementsByClassName('text_content')[0].innerText = message;
         messageEl.querySelector('span.msg_time').innerHTML = time;
     }
-    else {
+    else if (type == "other_messages") {
         messageEl.setAttribute('class', 'd-flex justify-content-end mb-4');
         messageEl.innerHTML = document.getElementById('other_msg').innerHTML;
         messageEl.getElementsByClassName('text_content')[0].textContent = message;
         messageEl.querySelector('span.msg_time_send').innerHTML = time;
+    }
+    else {
+        messageEl.setAttribute('class', 'd-flex justify-content-center mb-4');
+        messageEl.innerHTML = document.getElementById('announcement_msg').innerHTML;
+        messageEl.getElementsByClassName('text_content')[0].textContent = message;
+        messageEl.querySelector('span.msg_time_announcement').innerHTML = time;
     }
     // console.log(messageEl);
     messageContainer.append(messageEl);
@@ -94,6 +100,7 @@ navigator.mediaDevices.getUserMedia({
 
     socket.on('user-connected', userId => {
         connectToNewUser(userId, stream);
+        appendMessage(`A guest joined the room!`, 'announcement_msg');
     })
 })
 
@@ -101,6 +108,7 @@ socket.on('user-disconnected', userId => {
     if (peers[userId]) {
         peers[userId].close();
     }
+    appendMessage(`Your guest left the room!`, 'announcement_msg');
     // console.log('User Disconnected');
 })
 
