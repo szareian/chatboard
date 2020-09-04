@@ -20,55 +20,6 @@ const sendContainer = document.getElementById('send-container');
 const messageInput = document.getElementById("message-input");
 const messageContainer = document.querySelector('.msg_card_body');
 
-socket.on('chat-message', message => {
-    appendMessage(message, 'other_messages');
-    // console.log(data.message);
-})
-
-sendContainer.addEventListener('submit', e => {
-    e.preventDefault();
-    const message = messageInput.value;
-
-    // Append messages sent by You
-    appendMessage(`${message}`, 'my_messages');
-
-    // Emit the messages to the other users
-    socket.emit('send-chat-message', message);
-
-    // blank the message box
-    messageInput.value = '';
-})
-
-
-function appendMessage(message, type) {
-    var time = new Date().toLocaleTimeString();
-
-    const messageEl = document.createElement('div');
-    if (type == "my_messages") {
-        messageEl.setAttribute('class', 'd-flex justify-content-start mb-4');
-        messageEl.innerHTML = document.getElementById('my_msg').innerHTML;
-        messageEl.getElementsByClassName('text_content')[0].innerText = message;
-        messageEl.querySelector('span.msg_time').innerHTML = time;
-    }
-    else if (type == "other_messages") {
-        messageEl.setAttribute('class', 'd-flex justify-content-end mb-4');
-        messageEl.innerHTML = document.getElementById('other_msg').innerHTML;
-        messageEl.getElementsByClassName('text_content')[0].textContent = message;
-        messageEl.querySelector('span.msg_time_send').innerHTML = time;
-    }
-    else {
-        messageEl.setAttribute('class', 'd-flex justify-content-center mb-4');
-        messageEl.innerHTML = document.getElementById('announcement_msg').innerHTML;
-        messageEl.getElementsByClassName('text_content')[0].textContent = message;
-        messageEl.querySelector('span.msg_time_announcement').innerHTML = time;
-    }
-    // console.log(messageEl);
-    messageContainer.append(messageEl);
-
-    // scroll down to the most recent message
-    messageContainer.scrollTop = messageContainer.scrollHeight;
-}
-
 socket.on('userCount', userCount => {
     numUsers = userCount[ROOM_ID];
     switch (numUsers) {
@@ -134,6 +85,53 @@ function connectToNewUser(userId, stream) {
     })
 
     peers[userId] = call;
+}
+
+socket.on('chat-message', message => {
+    appendMessage(message, 'other_messages');
+    // console.log(data.message);
+})
+
+sendContainer.addEventListener('submit', e => {
+    e.preventDefault();
+    const message = messageInput.value;
+
+    // Append messages sent by You
+    appendMessage(`${message}`, 'my_messages');
+
+    // Emit the messages to the other users
+    socket.emit('send-chat-message', message);
+
+    // blank the message box
+    messageInput.value = '';
+})
+
+function appendMessage(message, type) {
+    var time = new Date().toLocaleTimeString();
+
+    const messageEl = document.createElement('div');
+    if (type == "my_messages") {
+        messageEl.setAttribute('class', 'd-flex justify-content-start mb-4');
+        messageEl.innerHTML = document.getElementById('my_msg').innerHTML;
+        messageEl.querySelector('span.msg_time').innerHTML = time;
+    }
+    else if (type == "other_messages") {
+        messageEl.setAttribute('class', 'd-flex justify-content-end mb-4');
+        messageEl.innerHTML = document.getElementById('other_msg').innerHTML;
+        messageEl.querySelector('span.msg_time_send').innerHTML = time;
+    }
+    else { // Announcement messages
+        messageEl.setAttribute('class', 'd-flex justify-content-center mb-4');
+        messageEl.innerHTML = document.getElementById('announcement_msg').innerHTML;
+        messageEl.querySelector('span.msg_time_announcement').innerHTML = time;
+    }
+
+    messageEl.getElementsByClassName('text_content')[0].textContent = message;
+
+    messageContainer.append(messageEl);
+
+    // scroll down to the most recent message
+    messageContainer.scrollTop = messageContainer.scrollHeight;
 }
 
 function addVideoStream(video, stream) {
