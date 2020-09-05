@@ -5,17 +5,19 @@ const myPeer = new Peer(undefined, {
     port: '443',
 })
 
-call_end_btn = document.getElementById('call_end_btn');
 var mediaStream;
 var numUsers;
 const peers = {};
 
 // Video Conferencnig variables
+var call_end_btn = document.getElementById('call_end_btn');
 const remoteVideo = document.querySelector('video.video_guest');
 const myVideo = document.querySelector('video.video_local');
 myVideo.muted = true; // mute ourselves
 
 // Text messaging feature variables
+var chat_message_btn = document.getElementById('chat_msg_btn');
+const chatMsgCard = document.querySelector('.msg_card');
 const sendContainer = document.getElementById('send-container');
 const messageInput = document.getElementById("message-input");
 const messageContainer = document.querySelector('.msg_card_body');
@@ -86,6 +88,10 @@ function connectToNewUser(userId, stream) {
 
     peers[userId] = call;
 }
+
+chat_message_btn.addEventListener('click', () => {
+    chatMsgCard.style.display = chatMsgCard.style.display == 'inline-flex' ? 'none' : 'inline-flex';
+})
 
 socket.on('chat-message', message => {
     appendMessage(message, 'other_messages');

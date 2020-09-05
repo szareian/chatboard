@@ -84,7 +84,7 @@
         <video class='video_guest'></video>
     </div>
     <div class='video-overlays'>
-        <div class="card">
+        <div class="card msg_card">
             <div class="card-body msg_card_body smooth-scroll scrollbar-deep-blue"></div>
             <div class="card-footer">
                 <form id="send-container" autocomplete="off">
@@ -99,16 +99,23 @@
             </div>
         </div>
 
-        <footer class="text-center">
-            <sl-button type="default" size="large" onclick="cameraOnOff()" pill>
-                <sl-icon name="camera-video" id='videocam'></sl-icon>
-            </sl-button>
-            <sl-button type="danger" size="large" id="call_end_btn" onclick="exitRoom()" pill>
-                <sl-icon name="telephone" id='call_end'></sl-icon>
-            </sl-button>
-            <sl-button type="default" size="large" onclick="micOnOff()" pill>
-                <sl-icon name="mic" id='mic'></sl-icon>
-            </sl-button>
+        <footer>
+            <div class="text-left" id="btn_left">
+                <sl-button class="text-left" type="default" size="large" id="chat_msg_btn" pill>
+                    <sl-icon name="chat-text" id='chat_msg'></sl-icon>
+                </sl-button>
+            </div>
+            <div class="text-center" id="btn_center">
+                <sl-button type="default" size="large" onclick="cameraOnOff()" pill>
+                    <sl-icon name="camera-video" id='videocam'></sl-icon>
+                </sl-button>
+                <sl-button type="danger" size="large" id="call_end_btn" onclick="exitRoom()" pill>
+                    <sl-icon name="telephone" id='call_end'></sl-icon>
+                </sl-button>
+                <sl-button type="default" size="large" onclick="micOnOff()" pill>
+                    <sl-icon name="mic" id='mic'></sl-icon>
+                </sl-button>
+            </div>
         </footer>
     </div>
 </body>

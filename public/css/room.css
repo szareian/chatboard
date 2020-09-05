@@ -73,6 +73,17 @@ sl-button {
     z-index: 3;
 }
 
+#btn_left {
+    width: 100%;
+    height: 10vh;
+    position: fixed;
+    left: 2vh;
+}
+
+#chat_msg {
+    color: darkgreen;
+}
+
 #call_end {
     color: black;
 }
@@ -91,11 +102,11 @@ sl-button {
 }
 
 /* message box */
-.card {
+.msg_card {
+    display: none;
     position: fixed;
     bottom: 11vh;
     left: 1vh;
-    /* right: 1vh; */
     max-width: 500px;
     height: 88vh;
     border-radius: 15px !important;
