@@ -22,6 +22,10 @@ const sendContainer = document.getElementById('send-container');
 const messageInput = document.getElementById("message-input");
 const messageContainer = document.querySelector('.msg_card_body');
 
+socket.on('room-full', destination => {
+    window.location.href = destination;
+})
+
 socket.on('userCount', userCount => {
     numUsers = userCount[ROOM_ID];
     switch (numUsers) {

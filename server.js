@@ -38,40 +38,48 @@ app.get('/*', (req, res) => {
 
 io.on('connection', socket => {
     socket.on('join-room', (roomId, userId) => {
-        socket.join(roomId);
-        socket.to(roomId).broadcast.emit('user-connected', userId);
-
-        // keep track of the number of users in each room
-        if (userCount[roomId] == undefined) {
-            userCount[roomId] = 1;
-        } else {
-            userCount[roomId]++;
+        // Redirect the user to the home page if room is full (i.e. 2 users in the room)
+        if (userCount[roomId] == 2) {
+            destination = '/';
+            socket.emit('room-full', destination);
         }
+        else {
+            socket.join(roomId);
+            socket.to(roomId).broadcast.emit('user-connected', userId);
 
-        socket.on('send-chat-message', message => {
-            // console.log(message);
-            socket.broadcast.emit('chat-message', message);
-        })
-
-        io.sockets.emit('userCount', userCount);
-
-        socket.on('disconnect', () => {
-            socket.to(roomId).broadcast.emit('user-disconnected', userId);
-
-            userCount[roomId]--;
-
-            if (userCount[roomId] == 0) {
-                delete userCount[roomId];
+            // keep track of the number of users in each room
+            if (userCount[roomId] == undefined) {
+                userCount[roomId] = 1;
+            } else {
+                userCount[roomId]++;
             }
+
+            socket.on('send-chat-message', message => {
+                // console.log(message);
+                socket.broadcast.emit('chat-message', message);
+            })
+
             io.sockets.emit('userCount', userCount);
 
-            delete userId;
-        })
+            socket.on('disconnect', () => {
+                socket.to(roomId).broadcast.emit('user-disconnected', userId);
 
-        socket.on('error', (error) => {
-            console.log(error);
-        });
+                userCount[roomId]--;
+
+                if (userCount[roomId] == 0) {
+                    delete userCount[roomId];
+                }
+                io.sockets.emit('userCount', userCount);
+
+                delete userId;
+            })
+
+            socket.on('error', (error) => {
+                console.log(error);
+            });
+        }
     })
+
 })
 
 server.listen(PORT, () => { console.log(`Server is running on ${PORT}`); })
