@@ -1,4 +1,4 @@
-const socket = io('/')
+const socket = io('/');
 const myPeer = new Peer(undefined, {
     path: '/peerjs',
     host: '/',
@@ -174,8 +174,7 @@ var exitRoom = () => {
     mediaStream.srcObject = null;
 
     // Remove the guest video element 
-    remote_guest_video = document.querySelector('.video_guest');
-    remote_guest_video.remove();
+    remoteVideo.remove();
 
     // Redirect the user to the home page
     window.location.href = '/';
