@@ -95,6 +95,9 @@ function connectToNewUser(userId, stream) {
 
 chat_message_btn.addEventListener('click', () => {
     chatMsgCard.style.display = chatMsgCard.style.display == 'inline-flex' ? 'none' : 'inline-flex';
+
+    // set the focus on the input box  
+    messageInput.focus();
 })
 
 socket.on('chat-message', message => {
