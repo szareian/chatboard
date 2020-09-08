@@ -105,11 +105,19 @@
                 <sl-button type="default" size="large" onclick="cameraOnOff()" pill>
                     <sl-icon name="camera-video" id='videocam'></sl-icon>
                 </sl-button>
-                <sl-button type="danger" size="large" id="call_end_btn" onclick="exitRoom()" pill>
+                <sl-button type="danger" size="large" onclick="exitRoom()" pill>
                     <sl-icon name="telephone" id='call_end'></sl-icon>
                 </sl-button>
                 <sl-button type="default" size="large" onclick="micOnOff()" pill>
                     <sl-icon name="mic" id='mic'></sl-icon>
+                </sl-button>
+            </div>
+            <div class="text-right" id="btn_right">
+                <sl-button type="success" size="medium" id="start" pill>
+                    Start Capture
+                </sl-button>
+                <sl-button type="danger" size="medium" id="stop" pill>
+                    Stop Capture
                 </sl-button>
             </div>
         </footer>
