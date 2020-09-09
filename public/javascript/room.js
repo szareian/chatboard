@@ -9,21 +9,10 @@ var mediaStream;
 var numUsers;
 const peers = {};
 
-// Video Conferencnig variables
-// var call_end_btn = document.getElementById('call_end_btn');
+// Video conferencing variables
 const remoteVideo = document.querySelector('video.video_guest');
 const myVideo = document.querySelector('video.video_local');
 myVideo.muted = true; // mute ourselves
-
-// screen sharing 
-const startElem = document.getElementById("start");
-const stopElem = document.getElementById("stop");
-var displayMediaOptions = {
-    video: {
-        cursor: "always"
-    },
-    audio: false
-};
 
 // Text messaging feature variables
 var chat_message_btn = document.getElementById('chat_msg_btn');
@@ -210,37 +199,3 @@ var activateMiniVideo = () => {
     myVideo.classList.add('mini_video');
     activateVideo();
 }
-
-// Set event listeners for the start and stop buttons for screen sharing
-startElem.addEventListener("click", function (evt) {
-    startCapture();
-}, false);
-
-stopElem.addEventListener("click", function (evt) {
-    stopCapture();
-}, false);
-
-async function startCapture() {
-    startElem.style.display = 'none';
-    stopElem.style.display = 'block';
-    myVideo.style = "all: unset;";
-
-    try {
-        myVideo.srcObject = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
-    } catch (err) {
-        console.error("Error: " + err);
-    }
-}
-
-
-function stopCapture(evt) {
-    startElem.style.display = 'block';
-    stopElem.style.display = 'none';
-    // switch back to the original video stream
-    addVideoStream(myVideo, mediaStream);
-    myVideo.style = "all: set;";
-    mediaStream.getVideoTracks()[0].onended = () => {
-        console.info("Ended the ting");
-    }
-}
-

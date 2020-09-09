@@ -73,7 +73,6 @@ sl-button {
     z-index: 3;
 }
 
-
 #btn_left {
     width: 100%;
     height: 10vh;
@@ -101,10 +100,6 @@ sl-button {
 
 #mic {
     color: black;
-}
-
-#stop {
-    display: none;
 }
 
 .video-overlays {
