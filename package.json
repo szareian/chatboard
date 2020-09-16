@@ -1,7 +1,7 @@
 {
   "name": "chatboard",
   "version": "1.0.0",
-  "description": "Chatboard is a video chat app built on express.",
+  "description": "Chatboard is a a telecommunications application built on express.js and socket.io",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
