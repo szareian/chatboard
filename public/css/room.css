@@ -68,6 +68,7 @@ footer {
     position: fixed;
     bottom: 0;
 }
+
 sl-button {
     padding: 1%;
     z-index: 3;
@@ -149,7 +150,7 @@ img {
     width: 40px;
 }
 
-.msg_container {
+.msg_box_local {
     position: relative;
     border-radius: 25px 25px 25px 5px;
     background-color: lightskyblue; 
@@ -159,7 +160,7 @@ img {
     margin-left: 10px;
 }
 
-.msg_container_send {
+.msg_box_guest {
     position: relative;
     border-radius: 25px 25px 5px 25px;
     background-color: lightgreen;
@@ -169,7 +170,7 @@ img {
     margin-right: 10px;
 }
 
-.msg_container_announcement {
+.msg_box_announcement {
     position: relative;
     border-radius: 25px;
     background-color: rgba(255,255,255,0.5);
@@ -179,7 +180,7 @@ img {
     margin-bottom: auto;
 }
 
-.msg_time {
+.msg_time_local {
     left: 0;
     position: absolute;
     bottom: -15px;
@@ -188,7 +189,7 @@ img {
     font-size: 10px;
 }
 
-.msg_time_send {
+.msg_time_guest {
     right: 0;
     position: absolute;
     bottom: -15px;

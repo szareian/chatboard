@@ -125,12 +125,12 @@ function appendMessage(message, type) {
     if (type == "my_messages") {
         messageEl.setAttribute('class', 'd-flex justify-content-start mb-4');
         messageEl.innerHTML = document.getElementById('my_msg').innerHTML;
-        messageEl.querySelector('span.msg_time').innerHTML = time;
+        messageEl.querySelector('span.msg_time_local').innerHTML = time;
     }
     else if (type == "other_messages") {
         messageEl.setAttribute('class', 'd-flex justify-content-end mb-4');
         messageEl.innerHTML = document.getElementById('other_msg').innerHTML;
-        messageEl.querySelector('span.msg_time_send').innerHTML = time;
+        messageEl.querySelector('span.msg_time_guest').innerHTML = time;
     }
     else { // Announcement messages
         messageEl.setAttribute('class', 'd-flex justify-content-center mb-4');
