@@ -1,4 +1,6 @@
-const socket = io('/');
+const socket = io({
+    reconnection: false
+});
 const myPeer = new Peer(undefined, {
     path: '/peerjs',
     host: '/',
