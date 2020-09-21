@@ -71,7 +71,9 @@ io.on('connection', socket => {
                 }
                 io.sockets.emit('userCount', userCount);
 
+                // manually remove the userId and disconnect the socket to avoid the few seconds timeout period
                 delete userId;
+                socket.disconnect();
             })
 
             socket.on('error', (error) => {
