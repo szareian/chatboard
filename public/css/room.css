@@ -81,12 +81,6 @@ sl-button {
     left: 2vh;
 }
 
-#btn_right {
-    position: fixed;
-    right: 2vh;
-    bottom: 2vh;
-}
-
 #chat_msg {
     color: darkgreen;
 }
