@@ -67,7 +67,6 @@ socket.on('user-disconnected', userId => {
         peers[userId].close();
     }
     appendMessage(`Your guest left the room!`, 'announcement_msg');
-    // console.log('User Disconnected');
 })
 
 myPeer.on('open', id => {
@@ -103,7 +102,6 @@ chat_message_btn.addEventListener('click', () => {
 
 socket.on('chat-message', message => {
     appendMessage(message, 'other_messages');
-    // console.log(data.message);
 })
 
 sendContainer.addEventListener('submit', e => {
