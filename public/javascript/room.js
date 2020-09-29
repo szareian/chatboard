@@ -100,6 +100,7 @@ chat_message_btn.addEventListener('click', () => {
     messageInput.focus();
 })
 
+// Send message to other users
 socket.on('chat-message', message => {
     appendMessage(message, 'other_messages');
 })
@@ -153,6 +154,7 @@ function addVideoStream(video, stream) {
     })
 }
 
+// BUTTONS
 function cameraOnOff() {
     camera = document.getElementById('videocam');
     camera.setAttribute('name', camera.name == 'camera-video' ? 'camera-video-off' : 'camera-video');
