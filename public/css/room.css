@@ -83,14 +83,12 @@ sl-button {
 
 @media only screen and (max-width: 768px) {
     sl-button {
-        height: 10vh;
         position: relative;
-        bottom: 0;
-        left: 2vh;
-        padding: 1%;
+        left: 5vh;
     }
+    
     #btn_left {
-        left: 0vh;
+        left: -1vh;
     }
 }
 
