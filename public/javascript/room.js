@@ -93,6 +93,14 @@ function connectToNewUser(userId, stream) {
     peers[userId] = call;
 }
 
+function addVideoStream(video, stream) {
+    video.srcObject = stream;
+    video.addEventListener('loadedmetadata', () => {
+        video.play();
+    })
+}
+
+// Display toggle for showing/hiding the messaging icon on the footer
 chat_message_btn.addEventListener('click', () => {
     chatMsgCard.style.display = chatMsgCard.style.display == 'inline-flex' ? 'none' : 'inline-flex';
 
@@ -145,13 +153,6 @@ function appendMessage(message, type) {
 
     // scroll down to the most recent message
     messageContainer.scrollTop = messageContainer.scrollHeight;
-}
-
-function addVideoStream(video, stream) {
-    video.srcObject = stream;
-    video.addEventListener('loadedmetadata', () => {
-        video.play();
-    })
 }
 
 // BUTTONS
